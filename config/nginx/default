@@ -11,6 +11,7 @@ server {
     access_log /dev/stdout;
 
     root /var/www/public;
+    server_name docker;
 
     ssl_certificate     /etc/nginx/certs/default.crt;
     ssl_certificate_key /etc/nginx/certs/default.key;

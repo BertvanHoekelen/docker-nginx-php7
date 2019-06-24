@@ -33,6 +33,7 @@ RUN apt-get update && \
     php7.3-bcmath \
     php7.3-memcached \
     php7.3-dev \
+    php7.3-xdebug \
     pkg-config \
     libcurl4-openssl-dev \
     libedit-dev \
@@ -84,6 +85,10 @@ EXPOSE 80 443
 RUN curl -s http://getcomposer.org/installer | php && \
     echo "export PATH=${PATH}:/var/www/vendor/bin" >> ~/.bashrc && \
     mv composer.phar /usr/local/bin/composer
+
+RUN echo "xdebug.remote_enable=on" >> /etc/php/7.3/cli/conf.d/20-xdebug.ini \
+    && echo "xdebug.remote_enable=1" >> /etc/php/7.3/cli/conf.d/20-xdebug.ini \
+    && echo "xdebug.connect_back = 1" >> /etc/php/7.3/cli/conf.d/20-xdebug.ini
 
 # Source the bash
 RUN . ~/.bashrc
